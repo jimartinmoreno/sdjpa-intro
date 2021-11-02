@@ -1,9 +1,10 @@
-package guru.example.springframework.sdjpaintro.domain;
+package guru.springframework.sdjpaintro.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Objects;
 
 /**
  * Created by jt on 6/12/21.
@@ -68,5 +69,24 @@ public class Book {
                 ", isbn='" + isbn + '\'' +
                 ", publisher='" + publisher + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Book book = (Book) o;
+
+        if (!Objects.equals(id, book.id))
+            return false;
+        return isbn.equals(book.isbn);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + isbn.hashCode();
+        return result;
     }
 }
