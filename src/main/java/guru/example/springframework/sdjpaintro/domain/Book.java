@@ -20,7 +20,6 @@ public class Book {
     private String publisher;
 
     public Book() {
-
     }
 
     public Book(String title, String isbn, String publisher) {
@@ -59,5 +58,15 @@ public class Book {
 
     public void setPublisher(String publisher) {
         this.publisher = publisher;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", isbn='" + isbn + '\'' +
+                ", publisher='" + publisher + '\'' +
+                '}';
     }
 }
