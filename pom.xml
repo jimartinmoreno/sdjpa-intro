@@ -31,17 +31,16 @@
             <scope>test</scope>
         </dependency>
 
-        <!--
-         <dependency>
-             <groupId>com.h2database</groupId>
-             <artifactId>h2</artifactId>
-             <scope>runtime</scope>
-         </dependency>
-          -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>test</scope>
+        </dependency>
+
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <scope>runtime</scope>
+            <!--<scope>runtime</scope>-->
         </dependency>
 
         <dependency>
@@ -49,6 +48,25 @@
             <artifactId>spring-boot-devtools</artifactId>
         </dependency>
     </dependencies>
+
+    <profiles>
+        <!--
+            Este perfil permite incluir los driver de H2 en las dependencias en caso de que lo necesitemos
+            ya que e scope por defecto es "test" y eso hace que solo se incluya en las dependencias cuando
+            estamos lanzando  los test y no en el modo runtime
+
+            Hay que habilitar el profile maven h2 para esto también
+        -->
+        <profile>
+            <id>h2</id>
+            <dependencies>
+                <dependency>
+                    <groupId>com.h2database</groupId>
+                    <artifactId>h2</artifactId>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
 
     <build>
         <plugins>

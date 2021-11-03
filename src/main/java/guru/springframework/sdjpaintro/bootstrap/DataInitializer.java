@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 @Component
-@Profile(value = { "test" }) // Solo se ejecuta si usamos el perfil "test" en el application.properties
+@Profile(value = { "test",  }) // Solo se ejecuta si usamos el perfil "test" en el application.properties
 public class DataInitializer implements CommandLineRunner {
 
     private final BookRepository bookRepository;
@@ -19,6 +19,9 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+
+        bookRepository.deleteAll();
+
         Book bookDDD = new Book("Domain Driven Design", "123", "RandomHouse");
 
         //System.out.println("Id: " + bookDDD.getId());

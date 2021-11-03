@@ -11,9 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.ActiveProfiles;
 
 import javax.persistence.EntityManager;
 import javax.sql.DataSource;
@@ -30,9 +30,9 @@ import java.util.List;
  * disabled using the showSql attribute. If you are looking to load your full application configuration,
  * but use an embedded database, you should consider @SpringBootTest combined with
  * @AutoConfigureTestDatabase rather than this annotation
- *
- * @AutoConfigureTestDatabase (replace = Replace.NONE): Annotation that can be applied to a test class to configure a test database to use instead of
- * the application-defined or auto-configured DataSource.
+ * @AutoConfigureTestDatabase (replace = Replace.NONE): Annotation that can be applied to a test class to
+ * configure a test database to use instead of the application-defined or auto-configured DataSource.
+ * <p>
  * Replace.NONE: Don't replace the application default DataSource.
  */
 
@@ -42,11 +42,16 @@ import java.util.List;
  *
  * @ComponentScan En caso de necesitar que se cargue alguna configuración inicial o bootstraping
  *  se puede usar este tag
+ *
+ * @ActiveProfiles is a class-level annotation that is used to declare which active bean definition
+ * profiles should be used when loading an ApplicationContext for test classes.
  */
 //@ComponentScan(basePackages = {"guru.springframework.sdjpaintro.bootstrap"})
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
+// Sería un test de integración por que en este caso se lanza contra MySQL en lugar de contra H2
+@ActiveProfiles(value = {"mysql"})
 public class SpringBootJpaTestSlice {
 
     @Autowired
