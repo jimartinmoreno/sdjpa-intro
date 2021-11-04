@@ -30,7 +30,19 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-
+        <!--  Normalmente o se usa liquibase o se usa flywaydb no las 2 dependencias-->
+        <!--liquibase dependency-->
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+        </dependency>
+        <!--liquibase dependency-->
+        <!-- flywaydb dependency-->
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+        </dependency>
+        <!-- flywaydb dependency-->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
@@ -74,6 +86,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -82,16 +95,22 @@
                     <target>17</target>
                 </configuration>
             </plugin>
+
+            <!--liquibase plugin-->
             <plugin>
                 <groupId>org.liquibase</groupId>
                 <artifactId>liquibase-maven-plugin</artifactId>
                 <version>4.4.2</version>
                 <configuration>
+                    <propertyFile>src/main/resources/liquibase.properties</propertyFile>
+                    <!--
                     <url>jdbc:mysql://localhost:3306/sdjpa-intro?autoReconnect=true&amp;useSSL=false&amp;characterEncoding=UTF-8</url>
                     <username>root</username>
                     <password>root</password>
                     <outputChangeLogFile>changelog.xml</outputChangeLogFile>
                     <changeSetAuthor>jimartinmoreno</changeSetAuthor>
+                    <changeLogFile>changeLogFile.xml</changeLogFile>
+                    -->
                     <changelogSchemaName>sdjpa-intro</changelogSchemaName>
                 </configuration>
                 <dependencies>

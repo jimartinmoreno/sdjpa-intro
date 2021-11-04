@@ -92,7 +92,7 @@ public class SpringBootJpaTestSlice {
     @Rollback(value = true)
     void testJpaTestSplice() {
         long countBefore = bookRepository.count();
-        Book newBook = new Book("My Book", "1235555", "Self");
+        Book newBook = new Book("My Book", "1235555", "Self", null);
         Book returnedBook = bookRepository.save(newBook);
 
         long countAfter = bookRepository.count();
