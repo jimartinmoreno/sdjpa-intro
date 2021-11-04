@@ -1,6 +1,3 @@
-# Si Hibernate encuentra un fichero llamado schema.sql  lo ejecuta al principio
-# del arranque de la app
-
 drop table if exists book;
 drop table if exists author;
 drop table if exists hibernate_sequence;
@@ -13,7 +10,7 @@ create table book
     title     varchar(255),
     author_id bigint,
     primary key (id)
-) engine = InnoDB;
+);
 
 create table author
 (
@@ -21,12 +18,12 @@ create table author
     first_name varchar(255),
     last_name  varchar(255),
     primary key (id)
-) engine = InnoDB;
+);
 
 create table hibernate_sequence
 (
     next_val bigint
-) engine = InnoDB;
+);
 
 insert into hibernate_sequence
-values (0);
+values (1);

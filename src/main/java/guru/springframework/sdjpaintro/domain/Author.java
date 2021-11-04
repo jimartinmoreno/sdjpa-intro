@@ -4,15 +4,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.UUID;
 
 @Entity
 public class Author {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@GeneratedValue(strategy = GenerationType.AUTO)
+    // Es mas eficiente en MySQL que usar las tabla que genera Hibernate para generar Ids
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String firstName;
     private String lastName;
+    private Long phone;
 
     public Long getId() {
         return id;
@@ -36,6 +40,14 @@ public class Author {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public Long getPhone() {
+        return phone;
+    }
+
+    public void setPhone(Long phone) {
+        this.phone = phone;
     }
 
     @Override

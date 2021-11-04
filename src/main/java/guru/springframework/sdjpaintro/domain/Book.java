@@ -13,7 +13,9 @@ import java.util.Objects;
 public class Book {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    // @GeneratedValue(strategy = GenerationType.AUTO)
+    // Es mas eficiente en MySQL que usar las tabla que genera Hibernate para generar Ids
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String title;

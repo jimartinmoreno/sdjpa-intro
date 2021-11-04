@@ -1,0 +1,1 @@
+alter table author ADD phone BIGINT;

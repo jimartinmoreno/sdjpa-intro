@@ -26,8 +26,10 @@ public class FlywayDatabaseClean {
             }
         };*/
         return flyway -> {
+            System.out.println("FlywayMigrationStrategy.flyway - Init");
             flyway.clean();
             flyway.migrate();
+            System.out.println("FlywayMigrationStrategy.flyway - End");
         };
     }
 }
